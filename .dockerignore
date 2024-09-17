@@ -1,0 +1,13 @@
+# 忽略 node_modules，避免将所有依赖文件打包进 Docker 镜像
+node_modules
+# 忽略本地构建输出，防止将本地构建产物打包到镜像中
+build
+# 忽略 git 版本控制的文件
+.git
+.gitignore
+Dockerfile
+.dockerignore
+README.md
+# 忽略日志文件
+logs
+*.log
