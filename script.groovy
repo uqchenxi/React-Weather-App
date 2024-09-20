@@ -1,7 +1,7 @@
 def buildDockerImage() {
     echo "build the docker image..."
-    sh "docker build -t react-weather-app:1.0 ."
-    sh "docker tag react-weather-app:1.0 sunshinerxx/react-weather-app:1.0"
+    sh "docker build -t react-weather-app:1.1 ."
+    sh "docker tag react-weather-app:1.1 sunshinerxx/react-weather-app:1.1"
 }
 
 def dockerLogin() {
