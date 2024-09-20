@@ -19,9 +19,11 @@ def dockerLogin() {
 
 def dockerPushImage() {
     echo "push docker image..."
-    sh "docker push sunshinerxx/react-weather-app:1.0"
+    sh "docker push sunshinerxx/react-weather-app:1.1 ."
 }
 
 def deploy() {
     echo "dploy the app to ec2 server"
 }
+
+return this
