@@ -23,10 +23,10 @@ def dockerPushImage() {
 }
 
 def deploy() {
-    echo 'dploy the app to ec2 server...'
+    echo 'deploy the app to ec2 server...'
 
-    def dockerCmd = 'cd /home/ec2-user/; docker-compose -f docker-compose.yaml up'
-    def ec2Instance = ""
+    def dockerCmd = 'cd /home/ec2-user/ && docker-compose -f docker-compose.yaml up'
+    def ec2Instance = "ec2-user@3.107.6.214"
     sshagent(['ec2-docker-key']) {
         withCredentials([
             usernamePassword(
