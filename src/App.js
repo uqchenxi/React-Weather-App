@@ -38,9 +38,6 @@ function App() {
 			});
 	};
 
-	console.log(currentWeather);
-	console.log(forecastWeather);
-
 	return (
 		<div className={styles.container}>
 			<Search onSearchChange={handleOnSearchChange} />
