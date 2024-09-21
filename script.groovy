@@ -26,9 +26,9 @@ def deploy() {
     echo "dploy the app to ec2 server..."
     def dockerCmd = "docker run -d -p 80:80 sunshinerxx/react-weather-app:1.1"
     def ec2Instance = "ec2-user@3.107.6.214"
-    sshagent(['ec2-docker-key']) {
-        sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${dockerCmd}"
-    }
+    // sshagent(['ec2-docker-key']) {
+    //     sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${dockerCmd}"
+    // }
 }
 
 return this
