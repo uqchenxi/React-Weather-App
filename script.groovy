@@ -22,30 +22,23 @@ def dockerPushImage() {
     sh 'docker push sunshinerxx/react-weather-app:1.1'
 }
 
-def deploy(remoteHost) {
+def deploy() {
     echo 'dploy the app to ec2 server...'
 
+    def dockerCmd = 'cd /home/ec2-user/; docker-compose -f docker-compose.yaml up'
+    def ec2Instance = ""
     sshagent(['ec2-docker-key']) {
         withCredentials([
             usernamePassword(
-                credentialsId: 'docker-hub',
-                usernameVariable: 'USER',
-                passwordVariable: 'PASS'
+                credentialsId: "docker-hub",
+                usernameVariable: "USER",
+                passwordVariable: "PASS"
             )
         ]) {
-            sh '''
-                ssh -o StrictHostKeyChecking=no $remoteHost << EOF
-                echo $PASS | docker login -u $USER --password-stdin
-                rm -rf /home/ec2-user/*
-                EOF
-                '''
-            sh "scp ./docker-compose.yaml ${remoteHost}:/home/ec2-user/"
-            sh '''
-                ssh -o StrictHostKeyChecking=no $remoteHost << EOF
-                cd /home/ec2-user/
-                docker-compose -f docker-compose.yaml up
-                EOF
-                '''
+            sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} echo $PASS | docker login -u $USER --password-stdin"
+            sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} rm -rf /home/ec2-user/*"
+            sh "scp ./docker-compose.yaml ${ec2Instance}:/home/ec2-user/"
+            sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${dockerCmd}"
         }
     }
 }
