@@ -25,7 +25,7 @@ def dockerPushImage() {
 def deploy() {
     echo "dploy the app to ec2 server..."
 
-    def dockerCmd = "cd /home/ec2-user && docker-compose -f docker-compose.yaml up"
+    def dockerCmd = "cd /home/ec2-user/; docker-compose -f docker-compose.yaml up"
     def ec2Instance = "ec2-user@3.107.6.214"
     sshagent(['ec2-docker-key']) {
         withCredentials([
@@ -37,7 +37,7 @@ def deploy() {
         ]) {
             sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} echo $PASS | docker login -u $USER --password-stdin"
             sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} rm -rf /home/ec2-user/*"
-            sh "scp ./docker-compose.yaml ${ec2Instance}:/home/ec2-user"
+            sh "scp ./docker-compose.yaml ${ec2Instance}:/home/ec2-user/"
             sh "ssh -o StrictHostKeyChecking=no ${ec2Instance} ${dockerCmd}"
         }
     }
