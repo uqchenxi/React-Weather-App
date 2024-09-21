@@ -3,6 +3,10 @@ def gv
 pipeline {
     agent any
 
+    environment {
+        REMOTE_HOST = 'ec2-user@3.107.6.214'
+    }
+
     tools {
         nodejs 'Node-22-9'
     }
@@ -33,7 +37,7 @@ pipeline {
         stage('deploy the app') {
             steps {
                 script {
-                    gv.deploy()
+                    gv.deploy(REMOTE_HOST)
                 }
             }
         }
