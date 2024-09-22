@@ -22,11 +22,11 @@ def dockerPushImage() {
     sh 'docker push sunshinerxx/react-weather-app:1.1'
 }
 
-def deploy() {
+def deploy(ec2IP) {
     echo 'deploy the app to ec2 server...'
 
     def dockerCmd = 'docker-compose -f /home/ec2-user/docker-compose.yaml up -d'
-    def ec2Instance = "ec2-user@3.25.92.232"
+    def ec2Instance = "ec2-user@${ec2IP}"
     sshagent(['ec2-docker-key']) {
         withCredentials([
             usernamePassword(

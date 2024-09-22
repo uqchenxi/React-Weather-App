@@ -3,6 +3,10 @@ def gv
 pipeline {
     agent any
 
+    environment {
+        EC2_IP = "3.25.92.232"
+    }
+
     tools {
         nodejs 'Node-22-9'
     }
@@ -33,7 +37,7 @@ pipeline {
         stage('deploy the app') {
             steps {
                 script {
-                    gv.deploy()
+                    gv.deploy(EC2_IP)
                 }
             }
         }
