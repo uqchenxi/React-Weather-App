@@ -1,6 +1,6 @@
 version: '3'
 services:
-  weather-app:
-    image: weather-app
+  react-weather-app:
+    image: sunshinerxx/react-weather-app:1.1
     ports:
       - 80:80
