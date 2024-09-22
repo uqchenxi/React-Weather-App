@@ -26,7 +26,7 @@ def deploy() {
     echo 'deploy the app to ec2 server...'
 
     def dockerCmd = 'docker-compose -f /home/ec2-user/docker-compose.yaml up -d'
-    def ec2Instance = "ec2-user@3.107.6.214"
+    def ec2Instance = "ec2-user@3.25.92.232"
     sshagent(['ec2-docker-key']) {
         withCredentials([
             usernamePassword(
