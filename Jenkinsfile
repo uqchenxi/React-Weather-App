@@ -19,6 +19,13 @@ pipeline {
                 }
             }
         }
+        stage('upload environment file') {
+            steps {
+                script {
+                    gv.uploadEnv()
+                }
+            }
+        }
         stage('build docker image') {
             steps {
                 script {
