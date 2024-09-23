@@ -34,6 +34,11 @@ pipeline {
             }
         }
         stage('build docker image') {
+            when {
+                expression {
+                    BRANCH_NAME == 'cicd/jenkins-file'
+                }
+            }
             steps {
                 script {
                     gv.buildDockerImage()
@@ -41,6 +46,11 @@ pipeline {
             }
         }
         stage('push docker image') {
+            when {
+                expression {
+                    BRANCH_NAME == 'cicd/jenkins-file'
+                }
+            }
             steps {
                 script {
                     gv.dockerLogin()
@@ -49,6 +59,11 @@ pipeline {
             }
         }
         stage('deploy the app') {
+            when {
+                expression {
+                    BRANCH_NAME == 'cicd/jenkins-file'
+                }
+            }
             steps {
                 script {
                     gv.deploy(EC2_IP)
