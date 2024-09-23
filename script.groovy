@@ -2,6 +2,7 @@ def uploadEnv() {
     echo 'upload .env file..'
     configFileProvider([configFile(fileId: 'b5285b64-92e9-44d3-a220-6e6036c67d0a', variable: 'ENV_FILE')]) {
         sh "cp $ENV_FILE .env"
+        sh "ls"
     }
 }
 
