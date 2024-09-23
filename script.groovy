@@ -5,6 +5,10 @@ def uploadEnv() {
     }
 }
 
+def appTest() {
+    echo 'start test...'
+}
+
 def buildDockerImage() {
     echo 'build the docker image...'
     sh 'docker build -t react-weather-app:1.1 .'

@@ -26,6 +26,13 @@ pipeline {
                 }
             }
         }
+        stage('test') {
+            steps {
+                script {
+                    gv.appTest()
+                }
+            }
+        }
         stage('build docker image') {
             steps {
                 script {
