@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     environment {
-        EC2_IP = "3.25.92.232"
+        EC2_IP = "13.236.118.179"
     }
 
     tools {
